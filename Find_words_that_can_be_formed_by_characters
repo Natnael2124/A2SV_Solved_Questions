@@ -1,0 +1,15 @@
+class Solution:
+    def countCharacters(self, words: List[str], chars: str) -> int:
+        total_len=0
+        
+        for a in words:
+            char=list(chars)
+            for i in range(len(a)):
+                if a[i] not in char:
+                    break
+                else:
+                    char.remove(a[i])
+                if i==len(a)-1:
+                    total_len+=len(a)
+        return total_len
+        
