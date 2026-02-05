@@ -1,0 +1,11 @@
+class Solution:
+    def checkEqual(self, a, b) -> bool:
+        from  collections import Counter
+        ca=Counter(a)
+        cb=Counter(b)
+        for i in a:
+            if cb[i]!=ca[i]:
+                return False
+        
+        return True
+            
