@@ -1,0 +1,12 @@
+class Solution:
+    #Function to check if a is a subset of b.
+    def isSubset(self, a, b):
+        from collections import Counter
+        counta=Counter(a)
+        countb=Counter(b)
+        dif=countb-counta
+        if dif:
+            return False
+        else:
+            return True
+    
