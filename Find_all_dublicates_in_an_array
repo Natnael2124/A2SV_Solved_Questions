@@ -1,0 +1,10 @@
+class Solution:
+    def findDuplicates(self, nums: List[int]) -> List[int]:
+        from collections import Counter
+        count=Counter(nums)
+        output=[]
+        for i in count:
+            if count[i]>1:
+                output.append(i)
+        return output
+        
