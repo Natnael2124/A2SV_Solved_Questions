@@ -1,0 +1,9 @@
+class Solution:
+    def restoreString(self, s: str, indices: List[int]) -> str:
+        x=list(s)
+        shuffle=zip(indices,x)
+        a=[0]*len(indices)
+
+        for i,j in shuffle:
+            a[i]=j
+        return "".join(a)
