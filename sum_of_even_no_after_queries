@@ -1,0 +1,33 @@
+class Solution:
+    def sumEvenAfterQueries(self, nums: List[int], queries: List[List[int]]) -> List[int]:
+        ans=[]
+        su=0
+        for i in nums:
+            if i%2==0:
+                su+=i
+
+
+        for i in range(len(queries)):
+            if nums[queries[i][1]]%2==0:
+                
+                nums[queries[i][1]]=nums[queries[i][1]]+queries[i][0]
+                if nums[queries[i][1]]%2==0:
+                    su+=queries[i][0]
+                    ans.append(su)
+                
+                else:
+                    su-=nums[queries[i][1]]-queries[i][0]
+                    ans.append(su)
+             
+
+            else:
+                nums[queries[i][1]]=nums[queries[i][1]]+queries[i][0]
+                if nums[queries[i][1]]%2==0:
+                    su+=nums[queries[i][1]]
+                    ans.append(su)
+
+                else:
+                    ans.append(su)
+
+        
+        return ans
