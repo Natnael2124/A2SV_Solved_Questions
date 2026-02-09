@@ -1,0 +1,20 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        from collections import Counter
+
+        count=Counter(nums)
+        fre=[]
+        top=[]
+        for key in count:
+            
+            fre.append(count[key])
+
+        fre.sort(reverse=True)
+        
+        for i in range(k):
+            for key,value in count.items():
+            
+                if fre[i]==value:
+                    top.append(key)
+                
+        return list(set(top))
