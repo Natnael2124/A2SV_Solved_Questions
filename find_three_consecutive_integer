@@ -1,0 +1,11 @@
+class Solution:
+    def sumOfThree(self, num: int) -> List[int]:
+        ans=[]
+        if num%3!=0:
+            return ans
+
+        else:
+            for i in range(3):
+                ans.append(num//3-1+i)
+            return ans
+        
