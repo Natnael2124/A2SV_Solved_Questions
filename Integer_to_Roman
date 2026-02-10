@@ -1,0 +1,47 @@
+class Solution:
+    def intToRoman(self, num: int) -> str:
+        roman={
+        	1: 'I' ,
+            5:'V',  
+        	10:'X',
+            50:'L',
+            100:'C',
+            500:'D',
+            1000:'M'
+        }
+        n=len(str(num))
+        roman_no=[]
+        for i in range(n):
+            m=10**(n-1-i)
+            no=num//m
+            if  m==1000:
+                roman_no.append(roman[1000]*no)
+
+            elif m<1000:
+                module=no % 10
+                if module ==5:
+                    roman_no.append(roman[5*m])
+
+                elif module<4:
+                    roman_no.append(roman[1*m]*module)
+
+                
+
+                elif module ==4 :
+                    roman_no.append(roman[1*m])
+                    roman_no.append(roman[5*m])
+
+                elif module <9:
+                    diff=module-5
+                    roman_no.append(roman[5*m])
+                    roman_no.append(roman[1*m]*diff)
+                    
+
+                elif module ==9:
+                    roman_no.append(roman[1*m])
+                    roman_no.append(roman[10*m])
+
+            
+        return "".join(roman_no)
+
+
