@@ -1,0 +1,31 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        res=defaultdict(list)
+        store=[]
+        
+        for s in strs:
+            count=[0]*26
+
+            for c in s:
+                idx=ord(c)-ord('a')
+                count[idx]+=1
+            res[tuple(count)].append(s)
+
+        for value in res.values():
+            store.append(value)
+        
+        return store
+        
+
+
+    #this results TLE
+        '''store=[] 
+        final=[]
+        for i in range(len(strs)):
+            x=[j for j in strs if sorted(strs[i])==sorted(j) ]
+            store.append(x)
+
+        for i in store:
+            if i not in final:
+                final.append(i)
+        return final''
