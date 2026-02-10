@@ -1,0 +1,116 @@
+def solve():
+    n,x,k=list(map(int,input().split()))
+    s=input()
+    total_occ=0
+    R=0
+    L=0
+    for i in range(n):
+        if k>=0:
+            if x!=0:
+                if s[i]=='R':
+                    x+=1
+                    
+                else:
+                    x-=1
+                k-=1
+
+            else:
+                total_occ+=1
+                for i in range(n):
+                    if s[i]=='R':
+                        R+=1
+
+                    else:
+                        L+=1
+                    if L==R :
+                        break
+
+                sumof=R+L
+                if L==R and sumof!=0 and k>0:
+                    occ=k//sumof
+                    total_occ+=occ
+                print(total_occ)
+                return
+
+        else:
+            print(0)
+            return
+    if k>=0:
+        if x==0:
+
+    
+            total_occ+=1
+            for i in range(n):
+                if s[i]=='R':
+                    R+=1
+
+                else:
+                    L+=1
+                if L==R :
+                    break
+
+            sumof=R+L
+            if L==R and sumof!=0 and k>0:
+                occ=k//sumof
+                total_occ+=occ
+            print(total_occ)
+            return
+            
+
+    print(0)
+
+
+t=int(input())
+for i in range(t):
+    
+    solve()
+
+                
+
+
+
+
+
+
+#need little debugging
+''' for i in s:
+        if x!=0 and k>0 :
+            if i =='R':
+                x +=1
+                k -=1
+
+            else:
+                x -=1
+                k -=1
+        elif x==0 and k>0:
+            total_occ+=1
+            return
+ 
+
+    if x==0 and total_occ==0 and k>-1:
+        total_occ+=1
+    #identify the len
+    for i in range(n):
+        if i==0 :
+            if s[i]=='R':
+                R+=1
+
+            else:
+                L+=1
+        elif R!=L:
+            if s[i]=='R':
+                R+=1
+
+            else:
+                L+=1
+
+        else:
+            return
+    sumof=R+L
+
+    if sumof!=0 and x==0:
+        occ=k//sumof
+
+        total_occ+=occ
+    print(total_occ)'''
+
