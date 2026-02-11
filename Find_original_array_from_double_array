@@ -1,0 +1,28 @@
+from collections import Counter
+
+class Solution:
+    def findOriginalArray(self, changed: List[int]) -> List[int]:
+        if len(changed) % 2 != 0:
+            return []
+        
+        changed.sort()
+        count = Counter(changed)
+        res = []
+        
+        for x in changed:
+            
+            if count[x] == 0:
+                continue
+        
+            if count[x*2] == 0:
+                return []
+            
+            
+            if x == 0 and count[x] < 2:
+                return []
+            
+            res.append(x)
+            count[x] -= 1
+            count[x*2] -= 1
+            
+        return res if len(res) == len(changed) // 2 else []
