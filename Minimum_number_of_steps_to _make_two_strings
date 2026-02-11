@@ -1,0 +1,13 @@
+class Solution:
+    def minSteps(self, s: str, t: str) -> int:
+        from collections import Counter
+        count_s=Counter(s)
+        count_t=Counter(t)
+        diff=count_t-count_s
+        step=0
+        
+        if diff:
+            for value in diff.values():
+                step+=value
+
+        return step
