@@ -1,0 +1,17 @@
+class Solution:
+    def closeStrings(self, word1: str, word2: str) -> bool:
+        if len(word1)!= len(word2):
+            return False
+
+        for ch in word1:
+            if ch not in word2:
+                return False
+
+        count1=Counter(word1)
+        count2=Counter(word2)
+        print(count1,count2)
+
+        if len(count1.keys())!= len(count2.keys()):
+            return False
+        
+        return sorted(count1.values())==sorted(count2.values())
