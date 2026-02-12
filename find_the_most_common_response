@@ -1,0 +1,27 @@
+from collections import defaultdict
+from typing import List
+
+class Solution:
+    def findCommonResponse(self, responses: List[List[str]]) -> str:
+        global_counts = defaultdict(int)
+        
+        for day_responses in responses:
+            unique_responses = set(day_responses)
+            for word in unique_responses:
+                global_counts[word] += 1
+    
+        #initialize with a frequency of 0 and an empty string
+        best_word = ""
+        max_freq = 0
+        
+        for word, freq in global_counts.items():
+            #Higher frequency 
+            if freq > max_freq:
+                max_freq = freq
+                best_word = word
+            #  lexicographical smallest
+            elif freq == max_freq:
+                if best_word == "" or word < best_word:
+                    best_word = word
+                    
+        return best_word
