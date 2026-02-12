@@ -1,0 +1,41 @@
+class Solution:
+    '''def inbound(i,j):
+        i+=r
+        j+=c
+        if i<len(matrix) and j< len(matrix[0]) and i>=0 and j>=0:
+            return '''
+        
+
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        zeros=[]
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+
+                if matrix[i][j]==0:
+                    zeros.append((i,j))
+    
+        dirx=[(-1,0),(0,-1),(0,1),(1,0)]
+
+        for cell in zeros:
+            x,y=cell
+            
+            rep=len(matrix)
+            print(rep)
+            for dr in dirx:
+                r,c= dr
+                i=x+r
+                j=y+c
+                    
+                while i<len(matrix) and j< len(matrix[0]) and i>=0 and j>=0:
+                    matrix[i][j]=0
+                    i+=r
+                    j+=c
+                    
+                    
+                    
+
+                
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        
