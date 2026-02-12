@@ -1,0 +1,15 @@
+import numpy as np
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        n=len(matrix)
+        for i in range(n//2):
+            matrix[i],matrix[n-1-i]=matrix[n-1-i],matrix[i]
+        new=[]
+        for i in range(n):
+            temp=[]
+            for j in range(n):
+                temp.append(matrix[j][i])
+            new.append(temp)
+        for i in range(n):
+            matrix[i]=new[i]
+                    
