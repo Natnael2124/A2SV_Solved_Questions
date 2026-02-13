@@ -1,0 +1,32 @@
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        n=len(matrix)
+        m=len(matrix[0])
+
+        min_r,min_c=0,0
+        total_elements=n*m-1
+        rot=[[0,1],[1,0],[0,-1],[-1,0]]
+        store=[]
+        x=0
+        y=0
+        store.append(matrix[x][y])
+        while total_elements>0:
+            for i,j in rot:
+
+                while min_r<= x+i < n and min_c <= y+j < m:
+                    x+=i
+                    y+=j
+                    store.append(matrix[x][y])
+                    total_elements-=1
+                    
+                
+                if i==0 and j==1:
+                    min_r+=1
+                elif i==1 and j==0:
+                    m-=1
+                elif i==0 and j==-1:
+                    n-=1
+                else:
+                    min_c+=1
+                
+        return store
