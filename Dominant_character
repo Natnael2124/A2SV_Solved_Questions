@@ -1,0 +1,32 @@
+def solve():
+    n = int(input())
+    s = input()
+    
+    ans = 10 # any number greater than 7 
+
+    for i in range(n):
+        if s[i] == 'a':
+            for length in [2, 3, 4, 7]:
+                if i + length <= n:
+                    sub = s[i:i+length]
+                    
+                    cnt_a = sub.count('a')
+                    cnt_b = sub.count('b')
+                    cnt_c = sub.count('c')
+                    
+                    if cnt_a > cnt_b and cnt_a > cnt_c:
+                        if length < ans:
+                            ans = length
+            
+            if ans == 2:
+                break
+
+    if ans > 7:
+        print(-1)
+    else:
+        print(ans)
+
+
+t = int(input())
+for _ in range(t):
+    solve()
