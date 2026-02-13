@@ -1,0 +1,23 @@
+class Solution:
+    def imageSmoother(self, img: List[List[int]]) -> List[List[int]]:
+        m=len(img)
+        n=len(img[0])
+        count=0
+        sumof=0
+
+        matrix=[[0]*n for i in range(m)]
+        
+
+        nebr=[[-1,0],[1,0],[0,-1],[0,1],[0,0],[-1,-1],[-1,1],[1,-1],[1,1]]
+        
+        for i in range(len(img)):
+            for j in range(len(img[0])):
+                count=0
+                sumof=0
+                for k in nebr:
+                    if 0<= i+k[0] <m and 0<= j+k[1] <n:
+                        sumof+=img[i+k[0]][j+k[1]]
+                        count+=1
+                avg=sumof//count
+                matrix[i][j]=avg
+        return matrix
