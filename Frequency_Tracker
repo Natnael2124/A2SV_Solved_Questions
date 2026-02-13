@@ -1,0 +1,46 @@
+from collections import defaultdict
+
+class FrequencyTracker:
+
+    def __init__(self):
+        
+        self.number_counts = defaultdict(int)
+        
+        self.freq_counts = defaultdict(int)
+
+    def add(self, number: int) -> None:
+        
+        old_f = self.number_counts[number]
+        
+        if old_f > 0:
+            self.freq_counts[old_f] -= 1
+        
+        self.number_counts[number] += 1
+        new_f = self.number_counts[number]
+        
+        self.freq_counts[new_f] += 1
+
+    def deleteOne(self, number: int) -> None:
+        if self.number_counts[number] == 0:
+            return 
+        
+        old_f = self.number_counts[number]
+        
+        self.freq_counts[old_f] -= 1
+        
+        self.number_counts[number] -= 1
+        new_f = self.number_counts[number]
+        
+        
+        if new_f > 0:
+            self.freq_counts[new_f] += 1
+
+    def hasFrequency(self, frequency: int) -> bool:
+    
+        return self.freq_counts[frequency] > 0
+
+# Your FrequencyTracker object will be instantiated and called as such:
+# obj = FrequencyTracker()
+# obj.add(number)
+# obj.deleteOne(number)
+# param_3 = obj.hasFrequency(frequency)
