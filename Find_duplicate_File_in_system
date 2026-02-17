@@ -1,0 +1,25 @@
+class Solution:
+    def findDuplicate(self, paths: List[str]) -> List[List[str]]:
+        filehash=defaultdict(list)
+        ansr=[]
+        for w in paths:
+            parts=w.split(' ')
+            
+            direct=parts[0]
+            files=parts[1:]
+
+            for f in files:
+                f_parts=f.split('(')
+
+                name=f_parts[0]
+                content=f_parts[1][:-1]
+
+                full_path= direct + "/" + name
+                
+                filehash[content].append(full_path)
+
+        for value in filehash.values():
+            if len(value)>1:
+                ansr.append(value)
+        
+        return ansr
