@@ -1,0 +1,10 @@
+
+n=int(input())
+m=list(map(int,input().split()))
+m.sort()
+if n%2==0:
+    z=n//2-1
+else:
+    z=n//2
+print(m[z])
+
