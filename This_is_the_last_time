@@ -1,0 +1,44 @@
+def solve():
+    t=int(input())
+
+    for _ in range(t):
+        n,k=list(map(int,input().split()))
+        
+        casinos = []
+        for _ in range(n):
+            l, r, real = map(int, input().split())
+            # casinos that can increase our money
+            if real > k:
+                casinos.append((l, real))
+        
+        casinos.sort()
+        
+        current_k = k
+        max_reachable = k
+        idx = 0
+        num_casinos = len(casinos)
+        
+        # We keep looping as long as we find a way to increase our money
+        while idx < num_casinos:
+            # Check all casinos we can now afford
+            found_new = False
+            while idx < num_casinos and casinos[idx][0] <= current_k:
+                # Update the best payout we've seen so far
+                if casinos[idx][1] > max_reachable:
+                    max_reachable = casinos[idx][1]
+                idx += 1
+                found_new = True
+            
+            # If our best payout is better than our current money, "jump" to it
+            if max_reachable > current_k:
+                current_k = max_reachable
+                # After jumping, we might be able to afford more casinos 
+                # (the outer loop continues)
+            else:
+                # If we can't afford any new ones and can't jump higher, stop
+                break
+                
+        print(current_k)
+
+solve()
+
