@@ -1,0 +1,36 @@
+from collections import Counter
+ 
+T = int(input())
+for _ in range(T):
+    s = input().strip()
+    t = input().strip()
+ 
+    cs = Counter(s)
+    ct = Counter(t)
+ 
+    
+    if cs - ct:
+        print("Impossible")
+        continue
+ 
+    for c in s:
+        ct[c] -= 1
+ 
+    result = []
+    alphabet = [chr(i) for i in range(ord('a'), ord('z') + 1)]
+ 
+    for c in s:
+        for x in alphabet:
+            if x >= c:
+                break
+            if ct[x] > 0:
+                result.append(x * ct[x])
+                ct[x] = 0
+ 
+        result.append(c)
+ 
+    for x in alphabet:
+        if ct[x] > 0:
+            result.append(x * ct[x])
+ 
+    print("".join(result))
