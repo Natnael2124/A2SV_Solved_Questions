@@ -1,0 +1,30 @@
+class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        store=[]
+        i=0
+        count=0
+        for j in range(len(nums)):
+            if nums[j]==0:
+                i=j+1
+                if count!=0:
+                    store.append(count)
+                if j+1<len(nums):
+                    if nums[j+1]==0:
+                        store.append(0)
+                count=0
+            else:
+                count+=1
+        store.append(count)
+        
+        if len(store)==1 and store[0]!=0 :
+            if 0 not in nums:
+                return store[0]-1
+            else:
+                return store[0]
+        else:
+            max_value=0
+            for i in range(len(store)-1):
+                value=store[i]+store[i+1]
+    
+                max_value=max(max_value,value)
+            return max_value
