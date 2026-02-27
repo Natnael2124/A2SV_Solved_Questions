@@ -1,0 +1,15 @@
+from collections import Counter
+n,m =list(map(int,input().split()))
+first=list(map(int,input().split()))
+second=list(map(int,input().split()))
+
+fir=Counter(first)
+sec=Counter(second)
+
+output=0
+
+for i in fir:
+    if i in sec.keys():
+        output+=(fir[i]*sec[i])
+        
+print(output)
