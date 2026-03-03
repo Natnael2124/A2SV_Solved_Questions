@@ -1,0 +1,17 @@
+class Solution:
+    def customSortString(self, order: str, s: str) -> str:
+        count=Counter(s)
+        orde=[]
+        for i in order:
+            if i not in count.keys():
+                continue
+            else:
+                while count[i]>0:
+                    orde.append(i)
+                    count[i]-=1
+                    if count[i]==0:
+                        del(count[i])
+        for i in count:
+            orde.append(i*count[i])
+        return "".join(orde)
+        
