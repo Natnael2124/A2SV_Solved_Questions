@@ -1,0 +1,30 @@
+import sys
+
+def solve():
+    # Read n and k
+    n, k = map(int, sys.stdin.readline().split())
+    # Read the sorted array
+    a = list(map(int, sys.stdin.readline().split()))
+    
+    # If we need n subarrays, every element is its own subarray (cost 0)
+    if k == n:
+        print(0)
+        return
+
+    total_cost = a[n-1] - a[0]
+    
+    gaps = []
+    for i in range(n - 1):
+        gaps.append(a[i+1] - a[i])
+    
+    gaps.sort(reverse=True)
+    
+    
+    for i in range(k - 1):
+        total_cost -= gaps[i]
+        
+    print(total_cost)
+
+solve()
+    
+    
