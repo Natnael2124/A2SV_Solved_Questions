@@ -1,0 +1,24 @@
+from collections import defaultdict
+n,k,q=map(int,input().split())
+
+ntem=[0]*200002
+for i in range(n):
+    v=list(map(int,input().split()))
+    ntem[v[0]]+=1
+    if v[1]<200002:
+        ntem[v[1]+1]-=1
+for i in range(1,200002):
+     ntem[i] = ntem[i]+ntem[i-1]
+count=[0]*200002
+if ntem[0]>=k:
+        count[0]=1
+  
+for i in range(1,200002):
+    if ntem[i]>=k:
+        count[i]=count[i-1]+1
+    else:
+        count[i]=count[i-1]
+for i in range(q):
+    var=list(map(int,input().split()))
+    print(count[var[1]]-count[var[0]-1])
+    
