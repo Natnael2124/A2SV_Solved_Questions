@@ -1,0 +1,23 @@
+class Solution:
+    def maxSumRangeQuery(self, nums: List[int], requests: List[List[int]]) -> int:
+        n=len(nums)
+        freq=[0]*(n+1)
+
+        for start,finish in requests:
+            freq[start]+=1
+            freq[finish+1]-=1
+        for i in range(1,n+1):
+            freq[i]+=freq[i-1]
+            
+        freq.pop()
+        freq.sort(reverse=True)
+        nums.sort(reverse=True)
+
+        count=0
+        mod=10**9+7
+        for i in range(n):
+            if freq[i]==0:
+                break
+            count=(count+freq[i]*nums[i])%mod
+        return count
+        
