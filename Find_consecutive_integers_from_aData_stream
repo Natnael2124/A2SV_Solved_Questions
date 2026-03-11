@@ -1,0 +1,28 @@
+class DataStream:
+
+    def __init__(self, value: int, k: int):
+        self.value = value
+        self.k = k
+        self.kk = k
+      
+    def consec(self, num: int) -> bool:
+        self.num = num
+        if self.num != self.value:
+            self.k = self.kk
+            return False
+        elif self.k > 1:
+            
+            self.k -= 1
+            return False
+        else:
+            self.k -= 1
+
+        if self.k <1:
+            return True
+
+        
+
+
+# Your DataStream object will be instantiated and called as such:
+# obj = DataStream(value, k)
+# param_1 = obj.consec(num)
