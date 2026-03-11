@@ -1,0 +1,39 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        curr = head
+        reversed = None
+
+        #reversing the list so that i can compare starting from head and in the way removing the smaller numbers
+
+        while curr:
+            next_node = curr.next
+            curr.next = reversed
+
+            reversed = curr
+            curr = next_node
+
+        #removing the smaller numbers
+        pointer = reversed
+        while pointer.next:
+            if pointer.val > pointer.next.val:
+                pointer.next = pointer.next.next
+            else:
+                pointer = pointer.next
+        # reversing it again
+        now = reversed
+        prev = None
+
+        while now:
+            next_node = now.next
+            now.next = prev
+
+            prev = now
+            now = next_node 
+
+        return prev
+        
