@@ -1,0 +1,24 @@
+class Solution:
+    def minOperations(self, nums: List[int]) -> int:
+        n = len(nums)-2
+        operation = 0
+        for i in range(n):
+            if nums[i] == 1:
+                continue
+            else:
+                operation += 1
+                nums[i]  = 1
+                if nums[i+1] ==0 :
+                    nums[i+1] = 1
+                else:
+                    nums[i+1] = 0
+
+                if nums[i+2]== 0:
+                    nums[i+2] = 1
+                else:
+                    nums[i+2] = 0
+        count = Counter(nums)
+        if count[1] == len(nums):
+            return operation
+        else:
+            return -1
