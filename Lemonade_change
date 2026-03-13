@@ -1,0 +1,24 @@
+class Solution:
+    def lemonadeChange(self, bills: List[int]) -> bool:
+        count={5:0,10:0}
+        for bil in bills:
+            if bil == 5:
+                count[5] += 1
+            elif bil == 10:
+                if count[5] == 0:
+                    return False
+                else:
+                    count[5] -= 1
+                    count[10] += 1
+            elif bil == 20:
+                if count[5] == 0:
+                    return False
+                elif count[5] < 3 and count[10] == 0:
+                    return False
+                elif count[10] > 0 :
+                    count[10] -= 1
+                    count[5] -= 1
+                elif count[5] >= 3:
+                    count[5] -= 3
+        return True
+            
