@@ -1,0 +1,17 @@
+class Solution:
+    def subarraysDivByK(self, nums: List[int], k: int) -> int:
+        count= {0:1}
+        prefix = 0
+        reminder = 0
+        answer = 0
+
+        for i in nums:
+            prefix += i
+            reminder = prefix % k
+            if reminder < 0:
+                reminder += k
+            if reminder in count:
+                answer += count[reminder]
+            count[reminder] = count.get(reminder, 0) + 1
+        
+        return answer
