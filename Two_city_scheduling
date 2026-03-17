@@ -1,0 +1,22 @@
+class Solution:
+    def twoCitySchedCost(self, costs: List[List[int]]) -> int:
+        n = len(costs)
+        costs.sort(key=lambda costs:abs(costs[0]-costs[1]),reverse = True)
+        print(costs)
+        summ = 0
+        b = n//2
+        a = n//2
+        
+        for i in range(n):
+            if costs[i][0] == min(costs[i]) and a >0:
+                summ += costs[i][0]
+                a -= 1
+            elif costs[i][1] == min(costs[i]) and b > 0:
+                summ += costs[i][1]
+                b -= 1
+            elif a  == 0:
+                summ += costs[i][1]
+            else:
+                summ += costs[i][0]
+
+        return summ
