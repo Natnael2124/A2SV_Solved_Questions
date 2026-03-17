@@ -1,0 +1,16 @@
+class Solution:
+    def numRabbits(self, answers: List[int]) -> int:
+        answers.sort()
+        count = Counter(answers)
+        print(count)
+        minsum = 0
+        for key,value in count.items():
+            if key == 0:
+                minsum += value
+            elif key < value - 1  :
+                
+                minsum += ceil(value/(key + 1)) *(key +1)
+                
+            elif key >= value -1 :
+                minsum += key +1
+        return minsum
