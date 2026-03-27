@@ -1,0 +1,12 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        def bactrc(start,path):
+            result.append(path)
+
+            for i in range(start,len(nums)):
+                bactrc(i+1, path + [nums[i]])
+        
+        result = []
+        bactrc(0, [])
+
+        return result
