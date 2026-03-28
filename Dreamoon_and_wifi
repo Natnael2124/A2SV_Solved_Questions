@@ -1,0 +1,27 @@
+from math import comb
+
+send = input()
+recv = input()
+
+target = send.count('+') - send.count('-')
+
+current = 0
+q = 0
+
+for c in recv:
+    if c == '+':
+        current += 1
+    elif c == '-':
+        current -= 1
+    else:
+        q += 1
+
+needed = target - current
+
+if (q + needed) % 2 != 0 or abs(needed) > q:
+    print(0)
+else:
+    plus = (q + needed) // 2
+    ways = comb(q, plus)
+    total = 2 ** q
+    print(ways / total)
