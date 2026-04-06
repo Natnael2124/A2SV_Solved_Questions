@@ -1,0 +1,39 @@
+#include <vector>
+#include <algorithm>
+#include <climits>
+using namespace std;
+
+class Solution {
+public:
+    int findRadius(vector<int>& houses, vector<int>& heaters) {
+        sort(houses.begin(), houses.end());
+        sort(heaters.begin(), heaters.end());
+        
+        int radius = 0;
+        
+        for (int house : houses) {
+            // Find the first heater >= house
+            auto it = lower_bound(heaters.begin(), heaters.end(), house);
+            
+            int dist1 = INT_MAX, dist2 = INT_MAX;
+            
+            // Distance to right heater
+            if (it != heaters.end()) {
+                dist1 = abs(*it - house);
+            }
+            
+            // Distance to left heater
+            if (it != heaters.begin()) {
+                dist2 = abs(*(it - 1) - house);
+            }
+            
+            // Closest heater for this house
+            int closest = min(dist1, dist2);
+            
+            // Update the required radius
+            radius = max(radius, closest);
+        }
+        
+        return radius;
+    }
+};
