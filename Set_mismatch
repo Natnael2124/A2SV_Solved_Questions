@@ -1,0 +1,21 @@
+class Solution:
+    def findErrorNums(self, nums: List[int]) -> List[int]:
+        count = Counter(nums)
+        ans = []
+        for key,val in count.items():
+            if val ==  2:
+                ans.append(key)
+                i = 1
+                
+                while key - i > 0:
+                    if key - i not in count.keys():
+                        ans.append(key - i)
+                        return ans
+                    i += 1
+                i = 1
+                while True:
+                    if key + i not in count.keys() :
+                        ans.append(key + i)
+                        return ans
+                    i += 1
+                
