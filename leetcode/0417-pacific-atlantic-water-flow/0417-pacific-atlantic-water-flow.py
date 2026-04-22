@@ -18,4 +18,4 @@ class Solution:
         for i in range(m): dfs(i, 0, pacific)
         for j in range(n): dfs(m-1, j, atlantic)
         for i in range(m): dfs(i, n-1, atlantic)
-        return list(pacific & atlantic)
+        return list(pacific.intersection(atlantic))
