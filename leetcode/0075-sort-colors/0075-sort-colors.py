@@ -1,14 +1,20 @@
 class Solution:
-    def sortColors(self, nums: List[int]) -> None:
-        """
-        Do not return anything, modify nums in-place instead.
-        """
-        red = white = blue = 0
+    def sortColors(self, nums: list[int]) -> None:
+        low, mid = 0, 0
+        high = len(nums) - 1
         
-        for num in nums:
-            if num == 0: red += 1
-            elif num == 1: white += 1
-            else: blue += 1
-        nums[:] = [0] * red
-        nums[red:] = [1] * white
-        nums[red+white:] = [2] * blue
+        while mid <= high:
+            if nums[mid] == 0:
+                # Swap 0 to the low boundary
+                nums[low], nums[mid] = nums[mid], nums[low]
+                low += 1
+                mid += 1
+            elif nums[mid] == 1:
+                # 1 is already in the 'middle', just move on
+                mid += 1
+            else: # nums[mid] == 2
+                # Swap 2 to the high boundary
+                nums[mid], nums[high] = nums[high], nums[mid]
+                # Do NOT increment mid here; we need to inspect the 
+                # new value swapped from the end.
+                high -= 1
