@@ -5,13 +5,10 @@ class Solution:
         if n == 1 or n == 2:
             return 1
         
-        # Initialize the first three terms
         t0, t1, t2 = 0, 1, 1
         
-        # Iteratively calculate up to n
         for _ in range(3, n + 1):
             next_t = t0 + t1 + t2
-            # Shift our window forward
             t0, t1, t2 = t1, t2, next_t
             
         return t2
